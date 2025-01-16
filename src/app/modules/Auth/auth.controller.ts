@@ -18,7 +18,7 @@ const singupUser = catchAsync(async (req, res) => {
 })
 
 const loginUser = catchAsync(async (req, res) => {
-  const result = await AuthServices.loginUser(req.body);
+  const result = await AuthServices.loginUser(req.body)
 
   const { accessToken, needsPasswordChange, refreshToken } = result
 
@@ -33,13 +33,15 @@ const loginUser = catchAsync(async (req, res) => {
     message: 'User is logged succesfully',
     data: { needsPasswordChange, accessToken, refreshToken },
   })
-});
-
+})
 
 const changePassword = catchAsync(async (req, res) => {
   const { ...passwordData } = req.body
   const user = req?.user
-  const result = await AuthServices.changePassword(user as JwtPayload, passwordData)
+  const result = await AuthServices.changePassword(
+    user as JwtPayload,
+    passwordData,
+  )
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
@@ -50,5 +52,6 @@ const changePassword = catchAsync(async (req, res) => {
 
 export const AuthControllers = {
   singupUser,
-  loginUser
+  loginUser,
+  changePassword,
 }
