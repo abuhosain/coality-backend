@@ -23,4 +23,11 @@ router.post(
   AuthControllers.singupUser,
 )
 
+// singin in login
+router.post(
+  '/login',
+  AuthControllers.loginUser,
+  validateRequest(AuthValidation.loginValidationSchema),
+)
+
 export const AuthRoutes = router
