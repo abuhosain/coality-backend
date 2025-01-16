@@ -1,7 +1,11 @@
 import { z } from 'zod'
-
 const userValidationSchema = z.object({
   body: z.object({
+    name: z
+      .string()
+      .min(1, 'Name is required')
+      .max(50, { message: 'Name cannot be more than 50 characters' })
+      .trim(),
     email: z
       .string()
       .email('Invalid email format')
@@ -10,11 +14,17 @@ const userValidationSchema = z.object({
     password: z
       .string()
       .min(1, 'Password is required')
-      .max(20, { message: 'Password can not be more than 20 characters' })
+      .max(20, { message: 'Password cannot be more than 20 characters' })
       .trim()
       .optional(),
+    phone: z
+      .string()
+      .regex(/^\d{10,15}$/, { message: 'Phone number must be between 10 and 15 digits' })
+      .min(1, 'Phone number is required')
+      .trim(),
   }),
-})
+});
+
 
 const loginValidationSchema = z.object({
   body: z.object({

@@ -5,9 +5,7 @@ import config from '../../config'
 
 const userSchema = new Schema<IUser, UserModel>(
   {
-    _id: {
-      type: Schema.Types.ObjectId,
-    },
+     
     id: {
       type: String,
       required: true,
