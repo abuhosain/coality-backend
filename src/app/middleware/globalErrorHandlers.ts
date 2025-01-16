@@ -24,8 +24,6 @@ const globalErrorHandler: ErrorRequestHandler = async (
     },
   ];
 
-  
-
   if (err instanceof ZodError) {
     const simplifiedError = handleZodError(err);
     statusCode = simplifiedError?.statusCode;
