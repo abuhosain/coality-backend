@@ -3,6 +3,7 @@ import catchAsync from '../../utils/catchAsynch'
 import sendResponse from '../../utils/sendResponse'
 import { AuthServices } from './auth.service'
 import config from '../../config'
+import { JwtPayload } from 'jsonwebtoken'
 
 const singupUser = catchAsync(async (req, res) => {
   const user = req.body
@@ -32,7 +33,20 @@ const loginUser = catchAsync(async (req, res) => {
     message: 'User is logged succesfully',
     data: { needsPasswordChange, accessToken, refreshToken },
   })
-})
+});
+
+
+const changePassword = catchAsync(async (req, res) => {
+  const { ...passwordData } = req.body
+  const user = req?.user
+  const result = await AuthServices.changePassword(user as JwtPayload, passwordData)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Password is updated succesfully!',
+    data: result,
+  })
+});
 
 export const AuthControllers = {
   singupUser,
