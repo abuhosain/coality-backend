@@ -15,7 +15,7 @@ const singupUser = catchAsync(async (req, res) => {
     message: 'User is registered successfully',
     data: result,
   })
-})
+});
 
 const loginUser = catchAsync(async (req, res) => {
   const result = await AuthServices.loginUser(req.body)

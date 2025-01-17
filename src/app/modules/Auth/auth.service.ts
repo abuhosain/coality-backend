@@ -16,7 +16,7 @@ const signUpUserIntoDb = async (payload: IUser, file: TImageFile) => {
 
   const userData: IUser = {
     ...payload,
-    profilePicture: file.path,
+    profilePicture: file?.path,
   }
   const result = await User.create(userData)
   return result

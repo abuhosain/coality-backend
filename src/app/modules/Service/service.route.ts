@@ -1,0 +1,29 @@
+import express, { NextFunction, Request, Response } from 'express'
+import { multerUpload } from '../../config/multer.config'
+import AppError from '../../errors/AppError'
+import httpStatus from 'http-status'
+import validateRequest from '../../middleware/validateRequest'
+import { ServiceValidation } from './service.validation'
+import { ServiceControllers } from './service.controller'
+import auth from '../../middleware/auth'
+import { USER_ROLE } from '../Auth/auth.constance'
+
+const router = express.Router()
+
+// signup user
+router.post(
+  '/create-service',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (!req.file) {
+      throw new AppError(httpStatus.BAD_REQUEST, 'No file uploaded')
+    }
+    req.body = JSON.parse(req.body.data)
+    next()
+  },
+  validateRequest(ServiceValidation.serviceValidationSchema),
+  ServiceControllers.createService,
+)
+
+export const ServiceRoutes = router

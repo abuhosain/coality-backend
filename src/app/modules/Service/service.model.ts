@@ -14,6 +14,8 @@ const serviceSchema = new Schema<IServices>({
     type: String,
     required: true,
   },
+}, {
+  versionKey : false
 })
 
 export const Service = model<IServices>('Service', serviceSchema)
