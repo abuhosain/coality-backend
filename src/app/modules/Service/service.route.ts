@@ -26,4 +26,7 @@ router.post(
   ServiceControllers.createService,
 )
 
-export const ServiceRoutes = router
+// Get all services
+router.get('/', ServiceControllers.getAllServices)
+
+export const ServiceRoutes = router;

@@ -15,8 +15,14 @@ const createService = async (payload: IServices, file: TImageFile) => {
   }
   const result = await Service.create(serviceData)
   return result
-}
+};
+
+const getAllServices = async () => {
+  const services = await Service.find();
+  return services;
+};
 
 export const ServiceServices = {
   createService,
+  getAllServices
 }
