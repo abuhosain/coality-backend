@@ -15,14 +15,23 @@ const createService = async (payload: IServices, file: TImageFile) => {
   }
   const result = await Service.create(serviceData)
   return result
-};
+}
 
 const getAllServices = async () => {
-  const services = await Service.find();
-  return services;
-};
+  const services = await Service.find()
+  return services
+}
+
+const getServiceById = async (id: string) => {
+  const service = await Service.findById(id)
+  if (!service) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Service not found')
+  }
+  return service
+}
 
 export const ServiceServices = {
   createService,
-  getAllServices
+  getAllServices,
+  getServiceById,
 }

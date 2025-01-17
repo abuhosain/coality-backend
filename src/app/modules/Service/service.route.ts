@@ -29,4 +29,7 @@ router.post(
 // Get all services
 router.get('/', ServiceControllers.getAllServices)
 
+// Get service by ID
+router.get('/:id', ServiceControllers.getServiceById)
+
 export const ServiceRoutes = router;
