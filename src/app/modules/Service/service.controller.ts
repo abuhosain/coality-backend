@@ -36,8 +36,22 @@ const getServiceById = catchAsync(async (req, res) => {
   })
 })
 
+const updateService = catchAsync(async (req, res) => {
+  const { id } = req.params
+  const payload = req.body
+  const file: any = req?.file
+  const result = await ServiceServices.updateService(id, payload, file)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Service updated successfully',
+    data: result,
+  })
+})
+
 export const ServiceControllers = {
   createService,
   getAllServices,
   getServiceById,
+  updateService
 }

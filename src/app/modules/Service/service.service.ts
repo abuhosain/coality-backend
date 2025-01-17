@@ -30,8 +30,28 @@ const getServiceById = async (id: string) => {
   return service
 }
 
+const updateService = async (
+  id: string,
+  payload: Partial<IServices>,
+  file?: TImageFile,
+) => {
+  const service = await Service.findById(id)
+  if (!service) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Service not found')
+  }
+  const updatedData = {
+    ...payload,
+    icon: file?.path || service.icon,
+  }
+  const updatedService = await Service.findByIdAndUpdate(id, updatedData, {
+    new: true,
+  })
+  return updatedService
+}
+
 export const ServiceServices = {
   createService,
   getAllServices,
   getServiceById,
+  updateService,
 }

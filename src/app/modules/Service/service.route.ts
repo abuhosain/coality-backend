@@ -32,4 +32,19 @@ router.get('/', ServiceControllers.getAllServices)
 // Get service by ID
 router.get('/:id', ServiceControllers.getServiceById)
 
-export const ServiceRoutes = router;
+// Update service
+router.put(
+  '/:id',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (req.body.data) {
+      req.body = JSON.parse(req.body.data)
+    }
+    next()
+  },
+  validateRequest(ServiceValidation.updateServiceValidationSchema),
+  ServiceControllers.updateService,
+)
+
+export const ServiceRoutes = router

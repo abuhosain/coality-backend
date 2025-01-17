@@ -9,7 +9,14 @@ const serviceValidationSchema = z.object({
     description: z.string().min(1, 'Description is required').trim(),
   }),
 })
+const updateServiceValidationSchema = z.object({
+  body: z.object({
+    name: z.string().trim().optional(),
+    description: z.string().trim().optional(),
+  }),
+})
 
 export const ServiceValidation = {
   serviceValidationSchema,
+  updateServiceValidationSchema
 }
