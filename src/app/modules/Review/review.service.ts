@@ -12,7 +12,12 @@ const createReview = async (payload: IReview, file: TImageFile) => {
   return result;
 };
 
+const getAllReviews = async () => {
+  const reviews = await Review.find();
+  return reviews;
+};
 
 export const ReviewServices = {
-    createReview
-}
+  createReview,
+  getAllReviews,
+};
