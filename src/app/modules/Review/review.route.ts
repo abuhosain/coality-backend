@@ -26,10 +26,8 @@ router.post(
   ReviewControllers.createReview,
 );
 
-router.get(
-  '/',
-  ReviewControllers.getAllReviews,
-);
+router.get('/', ReviewControllers.getAllReviews);
 
+router.get('/:id', ReviewControllers.getReviewById);
 
 export const ReviewRoutes = router;
