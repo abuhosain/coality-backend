@@ -49,9 +49,18 @@ const updateService = async (
   return updatedService
 }
 
+const deleteService = async (id: string) => {
+  const service = await Service.findByIdAndDelete(id)
+  if (!service) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Service not found')
+  }
+  return service
+}
+
 export const ServiceServices = {
   createService,
   getAllServices,
   getServiceById,
   updateService,
+  deleteService,
 }
