@@ -10,7 +10,7 @@ import { USER_ROLE } from '../Auth/auth.constance'
 
 const router = express.Router()
 
-// signup user
+// create service
 router.post(
   '/create-service',
   auth(USER_ROLE.admin),

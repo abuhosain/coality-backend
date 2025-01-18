@@ -23,6 +23,9 @@ const reviewSchema = new Schema<IReview>({
     type: String,
     required: true,
   },
+},
+{
+  versionKey : false
 });
 
 export const Review = model<IReview>('Review', reviewSchema);
