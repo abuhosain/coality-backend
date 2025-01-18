@@ -35,8 +35,22 @@ const getReviewById = catchAsync(async (req, res) => {
   });
 });
 
+const updateReview = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const payload = req.body;
+  const file: any = req?.file;
+  const result = await ReviewServices.updateReview(id, payload, file);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Review updated successfully',
+    data: result,
+  });
+});
+
 export const ReviewControllers = {
   createReview,
   getAllReviews,
   getReviewById,
+  updateReview,
 };

@@ -26,8 +26,28 @@ const getReviewById = async (id: string) => {
   return review;
 };
 
+const updateReview = async (
+  id: string,
+  payload: Partial<IReview>,
+  file?: TImageFile,
+) => {
+  const review = await Review.findById(id);
+  if (!review) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Review not found');
+  }
+  const updatedData = {
+    ...payload,
+    photo: file?.path || review.photo,
+  };
+  const updatedReview = await Review.findByIdAndUpdate(id, updatedData, {
+    new: true,
+  });
+  return updatedReview;
+};
+
 export const ReviewServices = {
   createReview,
   getAllReviews,
-  getReviewById
+  getReviewById,
+  updateReview,
 };

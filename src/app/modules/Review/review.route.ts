@@ -30,4 +30,19 @@ router.get('/', ReviewControllers.getAllReviews);
 
 router.get('/:id', ReviewControllers.getReviewById);
 
+// Update review
+router.put(
+  '/:id',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (req.body.data) {
+      req.body = JSON.parse(req.body.data);
+    }
+    next();
+  },
+  validateRequest(ReviewValidation.updateReviewValidationSchema),
+  ReviewControllers.updateReview,
+);
+
 export const ReviewRoutes = router;
