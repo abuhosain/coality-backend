@@ -45,4 +45,9 @@ router.put(
   BrandControllers.updateBrand,
 );
 
+// delete brand
+
+
+router.delete('/:id', BrandControllers.deleteBrandById);
+
 export const BrandsRoutes = router;

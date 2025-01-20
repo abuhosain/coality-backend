@@ -34,6 +34,7 @@ const getReviewById = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
 const deleteReviewById = catchAsync(async (req, res) => {
   const result = await ReviewServices.deleteReview(req.params.id);
   sendResponse(res, {

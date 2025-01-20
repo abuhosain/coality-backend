@@ -32,7 +32,7 @@ const updateBrand = async (
   file?: TImageFile,
 ) => {
   const brand = await Brand.findById(id);
-  console.log('old brand', brand);
+  // console.log('old brand', brand);
   if (!brand) {
     throw new AppError(httpStatus.NOT_FOUND, 'Brand not found');
   }
@@ -46,9 +46,15 @@ const updateBrand = async (
   return updatedBrand;
 };
 
+const deleteBrand = async (id: string) => {
+  const result = await Brand.findByIdAndDelete(id);
+  return result;
+};
+
 export const BrandServices = {
   createBrand,
   getAllBrands,
   getBrandById,
   updateBrand,
+  deleteBrand,
 };
