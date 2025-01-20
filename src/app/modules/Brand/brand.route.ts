@@ -28,7 +28,7 @@ router.post(
 
 router.get('/', BrandControllers.getAllBrands);
 
-// router.get('/:id', ReviewControllers.getReviewById);
+router.get('/:id', BrandControllers.getBrandById);
 
 // // Update review
 // router.put(
