@@ -26,8 +26,29 @@ const getBrandById = async (id: string) => {
   return brand;
 };
 
+const updateBrand = async (
+  id: string,
+  payload: Partial<IBrand>,
+  file?: TImageFile,
+) => {
+  const brand = await Brand.findById(id);
+  console.log('old brand', brand);
+  if (!brand) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Brand not found');
+  }
+  const updatedData = {
+    ...payload,
+    photo: file?.path || brand.photo,
+  };
+  const updatedBrand = await Brand.findByIdAndUpdate(id, updatedData, {
+    new: true,
+  });
+  return updatedBrand;
+};
+
 export const BrandServices = {
   createBrand,
   getAllBrands,
   getBrandById,
+  updateBrand,
 };

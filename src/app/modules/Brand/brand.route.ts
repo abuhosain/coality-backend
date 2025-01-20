@@ -30,19 +30,19 @@ router.get('/', BrandControllers.getAllBrands);
 
 router.get('/:id', BrandControllers.getBrandById);
 
-// // Update review
-// router.put(
-//   '/:id',
-//   auth(USER_ROLE.admin),
-//   multerUpload.single('file'),
-//   (req: Request, res: Response, next: NextFunction) => {
-//     if (req.body.data) {
-//       req.body = JSON.parse(req.body.data);
-//     }
-//     next();
-//   },
-//   validateRequest(ReviewValidation.updateReviewValidationSchema),
-//   ReviewControllers.updateReview,
-// );
+// Update review
+router.put(
+  '/:id',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (req.body.data) {
+      req.body = JSON.parse(req.body.data);
+    }
+    next();
+  },
+  validateRequest(BrandValidation.updateBrandValidationSchema),
+  BrandControllers.updateBrand,
+);
 
 export const BrandsRoutes = router;
