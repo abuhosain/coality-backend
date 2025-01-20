@@ -10,21 +10,21 @@ import { BrandControllers } from './brand.controller';
 
 const router = express.Router();
 
-// // create review
-// router.post(
-//   '/create-brand',
-//   auth(USER_ROLE.admin),
-//   multerUpload.single('file'),
-//   (req: Request, res: Response, next: NextFunction) => {
-//     if (!req.file) {
-//       throw new AppError(httpStatus.BAD_REQUEST, 'No file uploaded');
-//     }
-//     req.body = JSON.parse(req.body.data);
-//     next();
-//   },
-//   validateRequest(BrandValidation.brandValidationSchema),
-//   BrandControllers.createBrand,
-// );
+// create review
+router.post(
+  '/create-brand',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (!req.file) {
+      throw new AppError(httpStatus.BAD_REQUEST, 'No file uploaded');
+    }
+    req.body = JSON.parse(req.body.data);
+    next();
+  },
+  validateRequest(BrandValidation.brandValidationSchema),
+  BrandControllers.createBrand,
+);
 
 // router.get('/', ReviewControllers.getAllReviews);
 
