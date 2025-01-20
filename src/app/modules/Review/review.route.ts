@@ -30,6 +30,8 @@ router.get('/', ReviewControllers.getAllReviews);
 
 router.get('/:id', ReviewControllers.getReviewById);
 
+router.delete('/:id', ReviewControllers.deleteReviewById);
+
 // Update review
 router.put(
   '/:id',

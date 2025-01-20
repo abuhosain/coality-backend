@@ -45,9 +45,15 @@ const updateReview = async (
   return updatedReview;
 };
 
+const deleteReview = async (id: string) => {
+  const result = await Review.findByIdAndDelete(id);
+  return result;
+};
+
 export const ReviewServices = {
   createReview,
   getAllReviews,
   getReviewById,
   updateReview,
+  deleteReview,
 };
