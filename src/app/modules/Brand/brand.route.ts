@@ -26,7 +26,7 @@ router.post(
   BrandControllers.createBrand,
 );
 
-// router.get('/', ReviewControllers.getAllReviews);
+router.get('/', BrandControllers.getAllBrands);
 
 // router.get('/:id', ReviewControllers.getReviewById);
 

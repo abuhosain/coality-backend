@@ -11,6 +11,12 @@ const createBrand = async (payload: IBrand, file: TImageFile) => {
   return result;
 };
 
+const getAllBrands = async () => {
+  const brands = await Brand.find();
+  return brands;
+};
+
 export const BrandServices = {
   createBrand,
+  getAllBrands,
 };
