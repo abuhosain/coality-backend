@@ -12,6 +12,10 @@ const workSchema = new Schema<IWork>(
       type: String,
       required: true,
     },
+    title : {
+      type : String,
+      required : true
+    },
     photo: {
       type: String,
       required: true,

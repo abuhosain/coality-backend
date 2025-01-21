@@ -26,8 +26,28 @@ const getWorkById = async (id: string) => {
   return work;
 };
 
+const updateWork = async (
+  id: string,
+  payload: Partial<IWork>,
+  file?: TImageFile,
+) => {
+  const work = await Work.findById(id);
+  if (!work) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Work not found');
+  }
+  const updatedData = {
+    ...payload,
+    photo: file?.path || work.photo,
+  };
+  const updatedWork = await Work.findByIdAndUpdate(id, updatedData, {
+    new: true,
+  });
+  return updatedWork;
+};
+
 export const WorkServices = {
   createWork,
   getAllWorks,
   getWorkById,
+  updateWork,
 };

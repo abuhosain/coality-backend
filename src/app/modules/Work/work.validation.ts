@@ -8,6 +8,11 @@ const workValidationSchema = z.object({
       .min(2, 'Type is required')
       .max(500, 'Type cannot exceed 500 characters')
       .trim(),
+    title: z
+      .string()
+      .min(2, 'Type is required')
+      .max(500, 'Type cannot exceed 500 characters')
+      .trim(),
     description: z
       .string()
       .min(1, 'Description is required')
@@ -30,12 +35,9 @@ const workValidationSchema = z.object({
 
 const updateWorkValidationSchema = z.object({
   body: z.object({
-    type: z
-      .string()
-      .min(2, 'Type is required')
-      .max(500, 'Type cannot exceed 500 characters')
-      .trim(),
+    type: z.string().trim().optional(),
     description: z.string().max(500).trim().optional(),
+    title: z.string().max(500).trim().optional(),
     photo: z.string().url().optional(),
     tag: z.string().max(50).trim().optional(),
     date: z.date().optional(),

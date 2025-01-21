@@ -8,6 +8,7 @@ export enum WorkType {
 
 export interface IWork {
   type: WorkType;
+  title : string
   description: string;
   photo: string;
   tag: [string];

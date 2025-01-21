@@ -29,4 +29,19 @@ router.get('/', WorkControllers.getAllWorks);
 
 router.get('/:id', WorkControllers.getWorkById);
 
+// Update review
+router.put(
+  '/:id',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (req.body.data) {
+      req.body = JSON.parse(req.body.data);
+    }
+    next();
+  },
+  validateRequest(WorkValidation.updateWorkValidationSchema),
+  WorkControllers.updateWork,
+);
+
 export const WorkRoutes = router;
