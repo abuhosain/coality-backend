@@ -45,9 +45,15 @@ const updateWork = async (
   return updatedWork;
 };
 
+const deleteWork = async (id: string) => {
+  const result = await Work.findByIdAndDelete(id);
+  return result;
+};
+
 export const WorkServices = {
   createWork,
   getAllWorks,
   getWorkById,
   updateWork,
+  deleteWork
 };

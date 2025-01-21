@@ -29,7 +29,6 @@ router.get('/', WorkControllers.getAllWorks);
 
 router.get('/:id', WorkControllers.getWorkById);
 
-// Update review
 router.put(
   '/:id',
   auth(USER_ROLE.admin),
@@ -43,5 +42,7 @@ router.put(
   validateRequest(WorkValidation.updateWorkValidationSchema),
   WorkControllers.updateWork,
 );
+
+router.delete('/:id', WorkControllers.deleteWork);
 
 export const WorkRoutes = router;

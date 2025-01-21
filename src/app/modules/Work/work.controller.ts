@@ -36,21 +36,32 @@ const getWorkById = catchAsync(async (req, res) => {
 });
 
 const updateWork = catchAsync(async (req, res) => {
-    const { id } = req.params;
-    const payload = req.body;
-    const file: any = req?.file;
-    const result = await WorkServices.updateWork(id, payload, file);
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Work updated successfully',
-      data: result,
-    });
+  const { id } = req.params;
+  const payload = req.body;
+  const file: any = req?.file;
+  const result = await WorkServices.updateWork(id, payload, file);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Work updated successfully',
+    data: result,
   });
+});
+
+const deleteWork = catchAsync(async (req, res) => {
+  const result = await WorkServices.deleteWork(req?.params?.id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Work deleted successfully',
+    data: result,
+  });
+});
 
 export const WorkControllers = {
   createWork,
   getAllWorks,
   getWorkById,
-  updateWork
+  updateWork,
+  deleteWork,
 };
