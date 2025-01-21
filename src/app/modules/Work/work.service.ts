@@ -1,3 +1,5 @@
+import httpStatus from 'http-status';
+import AppError from '../../errors/AppError';
 import { TImageFile } from '../../interface/image.interface';
 import { IWork } from './work.interface';
 import { Work } from './work.model';
@@ -16,7 +18,16 @@ const getAllWorks = async () => {
   return works;
 };
 
+const getWorkById = async (id: string) => {
+  const work = await Work.findById(id);
+  if (!work) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Work not found');
+  }
+  return work;
+};
+
 export const WorkServices = {
   createWork,
   getAllWorks,
+  getWorkById,
 };

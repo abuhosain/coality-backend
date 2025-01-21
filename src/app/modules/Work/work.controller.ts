@@ -25,7 +25,18 @@ const getAllWorks = catchAsync(async (req, res) => {
   });
 });
 
+const getWorkById = catchAsync(async (req, res) => {
+  const result = await WorkServices.getWorkById(req.params.id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Work retrieved successfully',
+    data: result,
+  });
+});
+
 export const WorkControllers = {
   createWork,
   getAllWorks,
+  getWorkById,
 };

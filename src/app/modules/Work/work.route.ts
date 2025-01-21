@@ -27,4 +27,6 @@ router.post(
 
 router.get('/', WorkControllers.getAllWorks);
 
+router.get('/:id', WorkControllers.getWorkById);
+
 export const WorkRoutes = router;
