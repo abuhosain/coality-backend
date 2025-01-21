@@ -13,10 +13,8 @@ const userValidationSchema = z.object({
       .trim(),
     password: z
       .string()
-      .min(1, 'Password is required')
-      .max(20, { message: 'Password cannot be more than 20 characters' })
-      .trim()
-      .optional(),
+      .min(6, 'Minimum password length is 6 characters')
+      .trim(),
     phone: z
       .string()
       .regex(/^\d{10,15}$/, { message: 'Phone number must be between 10 and 15 digits' })

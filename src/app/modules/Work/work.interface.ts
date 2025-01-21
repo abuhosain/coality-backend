@@ -10,7 +10,7 @@ export interface IWork {
   type: WorkType;
   description: string;
   photo: string;
-  tag: string;
+  tag: [string];
   date?: Date;
   video_link?: string;
   category?: string;

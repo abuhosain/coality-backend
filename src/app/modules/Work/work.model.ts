@@ -17,7 +17,7 @@ const workSchema = new Schema<IWork>(
       required: true,
     },
     tag: {
-      type: String,
+      type: [String],
       required: true,
     },
     date: {
