@@ -7,6 +7,7 @@ import httpStatus from 'http-status';
 import validateRequest from '../../middleware/validateRequest';
 import { TeamValidation } from './team.validation';
 import { TeamController } from './team.controller';
+import { Team } from './team.model';
 
 const router = express.Router();
 
@@ -29,5 +30,20 @@ router.post(
 router.get('/', TeamController.getAllTeam);
 
 router.get('/:id', TeamController.getTeamById);
+
+// Update team
+router.put(
+  '/:id',
+  auth(USER_ROLE.admin),
+  multerUpload.single('file'),
+  (req: Request, res: Response, next: NextFunction) => {
+    if (req.body.data) {
+      req.body = JSON.parse(req.body.data);
+    }
+    next();
+  },
+  validateRequest(TeamValidation.updateTeamValidation),
+  TeamController.updateTeam,
+);
 
 export const TeamRoutes = router;
