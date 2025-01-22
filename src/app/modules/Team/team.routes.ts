@@ -26,4 +26,6 @@ router.post(
   TeamController.createTeam,
 );
 
+router.get('/', TeamController.getAllTeam);
+
 export const TeamRoutes = router;

@@ -15,6 +15,17 @@ const createTeam = catchAsync(async (req, res) => {
   });
 });
 
+const getAllTeam = catchAsync(async (req, res) => {
+  const result = await TeamServices.getAllTeam();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Team retrieved successfully',
+    data: result,
+  });
+});
+
 export const TeamController = {
-    createTeam
-}
+  createTeam,
+  getAllTeam,
+};

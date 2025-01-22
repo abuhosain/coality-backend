@@ -11,6 +11,12 @@ const createTeam = async (payload: ITeam, file: TImageFile) => {
   return result;
 };
 
+const getAllTeam = async () => {
+  const team = await Team.find();
+  return team;
+};
+
 export const TeamServices = {
   createTeam,
+  getAllTeam,
 };
