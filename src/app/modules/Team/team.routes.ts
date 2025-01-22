@@ -46,4 +46,7 @@ router.put(
   TeamController.updateTeam,
 );
 
+// Delete team
+router.delete('/:id', auth(USER_ROLE.admin), TeamController.deleteTeam);
+
 export const TeamRoutes = router;

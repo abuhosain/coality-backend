@@ -49,9 +49,21 @@ const updateTeam = catchAsync(async (req, res) => {
   });
 });
 
+const deleteTeam = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await TeamServices.deleteTeam(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    data: result,
+    message: 'Team deleted successfully',
+  });
+});
+
 export const TeamController = {
   createTeam,
   getAllTeam,
   getTeamById,
   updateTeam,
+  deleteTeam,
 };

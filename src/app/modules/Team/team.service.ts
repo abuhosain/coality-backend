@@ -46,9 +46,18 @@ const updateTeam = async (
   return updatedTeam;
 };
 
+const deleteTeam = async (id: string) => {
+  const service = await Team.findByIdAndDelete(id);
+  if (!service) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Team not found');
+  }
+  return service;
+};
+
 export const TeamServices = {
   createTeam,
   getAllTeam,
   getTeamById,
   updateTeam,
+  deleteTeam,
 };
