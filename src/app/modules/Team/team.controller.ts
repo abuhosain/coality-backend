@@ -36,8 +36,22 @@ const getTeamById = catchAsync(async (req, res) => {
   });
 });
 
+const updateTeam = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const payload = req.body;
+  const file: any = req?.file;
+  const result = await TeamServices.updateTeam(id, payload, file);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Team updated successfully',
+    data: result,
+  });
+});
+
 export const TeamController = {
   createTeam,
   getAllTeam,
-  getTeamById
+  getTeamById,
+  updateTeam,
 };

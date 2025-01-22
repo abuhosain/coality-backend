@@ -27,8 +27,28 @@ const getTeamById = async (id: string) => {
   return team;
 };
 
+const updateTeam = async (
+  id: string,
+  payload: Partial<ITeam>,
+  file?: TImageFile,
+) => {
+  const team = await Team.findById(id);
+  if (!team) {
+    throw new AppError(httpStatus.NOT_FOUND, 'Team not found');
+  }
+  const updatedData = {
+    ...payload,
+    photo: file?.path || team.photo,
+  };
+  const updatedTeam = await Team.findByIdAndUpdate(id, updatedData, {
+    new: true,
+  });
+  return updatedTeam;
+};
+
 export const TeamServices = {
   createTeam,
   getAllTeam,
   getTeamById,
+  updateTeam,
 };
