@@ -4,6 +4,7 @@ import { ServiceRoutes } from '../modules/Service/service.route';
 import { ReviewRoutes } from '../modules/Review/review.route';
 import { BrandsRoutes } from '../modules/Brand/brand.route';
 import { WorkRoutes } from '../modules/Work/work.route';
+import { TeamRoutes } from '../modules/Team/team.routes';
 
 const router = Router();
 
@@ -27,6 +28,10 @@ const moduleRoutes = [
   {
     path: '/work',
     route: WorkRoutes,
+  },
+  {
+    path: '/team',
+    route: TeamRoutes,
   },
 ];
 
