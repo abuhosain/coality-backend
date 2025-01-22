@@ -28,4 +28,6 @@ router.post(
 
 router.get('/', TeamController.getAllTeam);
 
+router.get('/:id', TeamController.getTeamById);
+
 export const TeamRoutes = router;

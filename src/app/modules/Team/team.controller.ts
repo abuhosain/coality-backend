@@ -25,7 +25,19 @@ const getAllTeam = catchAsync(async (req, res) => {
   });
 });
 
+const getTeamById = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await TeamServices.getTeamById(id);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Team retrieved successfully',
+    data: result,
+  });
+});
+
 export const TeamController = {
   createTeam,
   getAllTeam,
+  getTeamById
 };
